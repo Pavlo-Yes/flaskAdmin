@@ -15,13 +15,8 @@ class PetModelView(ModelView):
 class UserModelView(ModelView):
 
     def is_accessible(self):
-        if current_user.is_authenticated and current_user:
-            return current_user.admin
-        else:
-            return False
+        return current_user.admin
 
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('home'))
 
 class MyAdminIndexView(AdminIndexView):
 
@@ -29,7 +24,7 @@ class MyAdminIndexView(AdminIndexView):
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 admin = Admin(app, index_view=MyAdminIndexView())

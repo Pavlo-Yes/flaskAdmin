@@ -17,7 +17,7 @@ def login():
 
 @app.route('/login_user')
 def login_u():
-    user = UserModel.query.get(1)
+    user = UserModel.query.get(2)
     login_user(user)
     return redirect(url_for('home'))
 
